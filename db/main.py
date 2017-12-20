@@ -9,7 +9,6 @@ def main():
             print("\nSelect 0 to Exit")
             for key,value in options.items():
                 print('Select {0} to {1}'.format(key, value.__doc__))
-
             choose = input("\nWhat do you want to do ? ")
             if choose =='0':
                 exit()
