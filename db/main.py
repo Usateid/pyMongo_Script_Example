@@ -1,7 +1,7 @@
 from db_actions import mongoActions
 
 dba = mongoActions('users')
-options = {'1':dba.insertUser,'2':dba.showAllUsers,'3': dba.deleteUser, '4':dba.countUsers,'5':dba.showUser,'6':dba.dropCollection}
+options = {'1':dba.insertUser,'2':dba.showAllUsers,'3': dba.deleteUser, '4':dba.countUsers,'5':dba.showUser,'6':dba.dropCollection, '7': dba.updateUserItem}
 
 def main():
     try:

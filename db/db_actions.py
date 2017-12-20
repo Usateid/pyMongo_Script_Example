@@ -85,13 +85,17 @@ class mongoActions:
         """Update the data of a user"""
         os.system('clear')
         self.name = input("Who needs to be upgraded?")
-        if len(self.collection.find({"name":self.name}))>0:
-            self.collection.update({"name": self.name},{$set:{"su"}})
+        if self.collection.find({"name":self.name}).count()>0:
+
+            self.collection.update(
+            {"name": self.name},
+            {
+            "$set":{"p":"ok"}})
 
 
 
 
-    def dropcollectionection(self):
+    def dropCollection(self):
         """Delete the collectionection"""
         os.system('clear')
         self.choice = input("Are you sure?").lower()

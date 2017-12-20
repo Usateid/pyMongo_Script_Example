@@ -1,0 +1,4 @@
+'''
+Rendere user identificabile da id e non name
+id incrementato con creazione dell'utente
+'''
