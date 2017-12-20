@@ -3,10 +3,10 @@ import os
 from pprint import pprint
 class mongoActions:
 
-    def __init__(self,collectionection):
+    def __init__(self,collection):
         self.client = MongoClient(serverSelectionTimeoutMS=1)
         self.db=self.client.test_database
-        self.collection = self.db[collectionection]
+        self.collection = self.db[collection]
         self.yes = {'yes','y', 'ye'}
 
     def getConnection(self):
@@ -25,7 +25,7 @@ class mongoActions:
             self.name = input("Who are you looking for? Insert a name: ")
             print(self.collection.find_one({"name": self.name}))
         else:
-            print("There's no one in this collectionection!")
+            print("There's no one in this collection!")
         print("\n\n\n")
 
 
@@ -42,7 +42,7 @@ class mongoActions:
 
 
     def showAllUsers(self):
-        """Find all user in the collectionection"""
+        """Find all user in the collection"""
         os.system('clear')
         if self.collection.count() > 0:
             print("Users found:")
@@ -65,7 +65,7 @@ class mongoActions:
             except Exception as e:
                 print(e)
         else:
-            print("You can't remove. The collectionection is empty.")
+            print("You can't remove. The collection is empty.")
 
         print("\n\n\n")
 
@@ -86,24 +86,24 @@ class mongoActions:
         os.system('clear')
         self.name = input("Who needs to be upgraded?")
         if self.collection.find({"name":self.name}).count()>0:
+            self.var = input("Insert name field")
 
-            self.collection.update(
-            {"name": self.name},
-            {
-            "$set":{"p":"ok"}})
-
+            self.value = input("Insert value field.You can insert more value separated by , ")
+            self.listValue = self.value.split(',')
+            #self.collection.update({"name": self.name},{"$set":{self.var,self.listValue}})
+            self.collection.update({"name": self.name},{ '$push':{self.var: {'$each':self.listValue}}})
 
 
 
     def dropCollection(self):
-        """Delete the collectionection"""
+        """Delete the collection"""
         os.system('clear')
         self.choice = input("Are you sure?").lower()
         if self.choice in self.yes:
            try:
                self.collection.remove()
-               print("collectionection Removed")
+               print("collection Removed")
            except:
-               print("Error collectionection not removed")
+               print("Error collection not removed")
         else:
             pass
